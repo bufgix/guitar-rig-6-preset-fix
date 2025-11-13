@@ -23,6 +23,15 @@ If no directory specified, uses current directory.
 - Works with binary file formats
 - Compatible with macOS and Linux
 
+## After Running the Script
+
+1. **Open Guitar Rig 6**
+2. **Go to Settings** (Preferences)
+3. **Click "Reset Library"** button
+4. **Restart Guitar Rig 6**
+
+This will refresh the preset library and apply the changes.
+
 ## Cleanup
 
 Remove backups after verifying changes:
