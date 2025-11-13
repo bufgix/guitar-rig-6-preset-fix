@@ -30,19 +30,12 @@ find "$TARGET_DIR" -type f -name "*.ngrr" | while read -r file; do
 
         # Replace "Guitar Rig 4" with "Guitar Rig 6"
         # Using LC_ALL=C to handle binary files properly
-        # Using perl for better binary file handling
-        if command -v perl >/dev/null 2>&1; then
-            # Use perl if available (best for binary files)
-            LC_ALL=C perl -pi -e 's/Guitar Rig 4/Guitar Rig 6/g' "$file"
+        if sed --version 2>/dev/null | grep -q GNU; then
+            # GNU sed (Linux)
+            LC_ALL=C sed -i 's/Guitar Rig 4/Guitar Rig 6/g' "$file"
         else
-            # Fallback to sed with LC_ALL=C
-            if sed --version 2>/dev/null | grep -q GNU; then
-                # GNU sed (Linux)
-                LC_ALL=C sed -i 's/Guitar Rig 4/Guitar Rig 6/g' "$file"
-            else
-                # BSD sed (macOS)
-                LC_ALL=C sed -i '' 's/Guitar Rig 4/Guitar Rig 6/g' "$file"
-            fi
+            # BSD sed (macOS)
+            LC_ALL=C sed -i '' 's/Guitar Rig 4/Guitar Rig 6/g' "$file"
         fi
 
         echo "  ✓ Replaced 'Guitar Rig 4' with 'Guitar Rig 6'"
